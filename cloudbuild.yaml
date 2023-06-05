@@ -1,4 +1,8 @@
 steps:
+- name: 'bash'
+  args: ['echo', 'Hello world!']
+logsBucket: 'us-central1-a'
+steps:
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
