@@ -21,6 +21,11 @@ steps:
       - >-
         --command=sudo apt-get update && sudo apt-get install -y nginx && echo
         "Hello from Cloud Build" | sudo tee /var/www/html/index.html
+        
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['compute', 'instances', 'stop', 'my-instance-akl', '--zone=us-central1-a']
+        
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
