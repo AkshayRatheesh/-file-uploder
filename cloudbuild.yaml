@@ -35,10 +35,10 @@ steps:
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['compute', 'instance-templates', 'create', 'newinstanvetm1',
-         '--source-instance=my-instance-akl1',
+         '--source-instance=image-creater',
          '--source-instance-zone=us-central1-a',
         # '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
-         '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
+         '--configure-disk=device-name=image-creater,instantiate-from=source-image,auto-delete=true']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
