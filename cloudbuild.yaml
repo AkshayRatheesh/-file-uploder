@@ -3,28 +3,28 @@ steps:
   args: ['echo', 'Hello world!'] 
 logsBucket: 'lunar-abbey-385508_cloudbuild'
 steps:
-#   - name: gcr.io/cloud-builders/gcloud
-#     args:
-#       - compute
-#       - instances
-#       - create
-#       - my-instance-akl1
-#       - '--zone=us-central1-a'
-#       - '--image=ak-custom-img'
-#       - '--machine-type=n1-standard-1'
-#   - name: gcr.io/cloud-builders/gcloud
-#     args:
-#       - compute
-#       - ssh
-#       - my-instance-akl1
-#       - '--zone=us-central1-a'
-#       - >-
-#         --command=sudo apt-get update && sudo apt-get install -y nginx && echo
-#         "Hello from Cloud Build" | sudo tee /var/www/html/index.html
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - compute
+      - instances
+      - create
+      - my-instance-akl1
+      - '--zone=us-central1-a'
+      - '--image=ak-custom-img'
+      - '--machine-type=n1-standard-1'
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - compute
+      - ssh
+      - my-instance-akl1
+      - '--zone=us-central1-a'
+      - >-
+        --command=sudo apt-get update && sudo apt-get install -y nginx && echo
+        "Hello from Cloud Build" | sudo tee /var/www/html/index.html
         
-# # steps:
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
+# steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
         
 #   - name: gcr.io/cloud-builders/gcloud
 #     args:
@@ -36,10 +36,11 @@ steps:
 #       - '--source-disk-zone=us-central1-a'
       
 
-      
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['compute', 'instance-templates', 'create-with-source-instance', 'instancetmpyyyy', '--source-instance', 'my-instance-akl1', '--source-instance-zone', 'us-central1-a']
-      
+    args: ['compute', 'instance-templates', 'create', 'newinstanvetm1',
+         '--source-instance=my-instance-akl1',
+         '--source-instance-zone=us-central1-a',
+         '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
       
   - name: gcr.io/cloud-builders/gcloud
     args:
