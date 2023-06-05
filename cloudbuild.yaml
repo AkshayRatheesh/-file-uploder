@@ -4,31 +4,31 @@ steps:
 logsBucket: 'lunar-abbey-385508_cloudbuild'
 steps:
 
-  # Set the default project ID
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['config', 'set', 'project', 'lunar-abbey-385508']
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - compute
-      - instances
-      - create
-      - my-instance-akl1
-      - '--zone=us-central1-a'
-      - '--image=projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230531'
-      - '--machine-type=n1-standard-1'
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - compute
-      - ssh
-      - my-instance-akl1
-      - '--zone=us-central1-a'
-      - >-
-        --command=sudo apt-get update && sudo apt-get install -y nginx && echo
-        "Hello from Cloud Build" | sudo tee /var/www/html/index.html
+#   # Set the default project ID
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: ['config', 'set', 'project', 'lunar-abbey-385508']
+#   - name: gcr.io/cloud-builders/gcloud
+#     args:
+#       - compute
+#       - instances
+#       - create
+#       - my-instance-akl1
+#       - '--zone=us-central1-a'
+#       - '--image=projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230531'
+#       - '--machine-type=n1-standard-1'
+#   - name: gcr.io/cloud-builders/gcloud
+#     args:
+#       - compute
+#       - ssh
+#       - my-instance-akl1
+#       - '--zone=us-central1-a'
+#       - >-
+#         --command=sudo apt-get update && sudo apt-get install -y nginx && echo
+#         "Hello from Cloud Build" | sudo tee /var/www/html/index.html
         
-# steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
+# # steps:
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
         
 
       
@@ -38,7 +38,9 @@ steps:
          '--source-instance=image-creater',
          '--source-instance-zone=us-central1-a',
         # '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
-         '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
+         '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true',
+         '--configure-disk=device-name=data-disk-b,instantiate-from=custom-image', 
+         '--custom-image=projects/lunar-abbey-385508/zones/us-central1-a/instances/my-instance-akl1']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
