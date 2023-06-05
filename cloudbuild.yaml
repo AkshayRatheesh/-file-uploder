@@ -1,7 +1,7 @@
 steps:
 - name: 'bash'
   args: ['echo', 'Hello world!']
-logsBucket: 'us-central1-a'
+logsBucket: 'lunar-abbey-385508_cloudbuild'
 steps:
   - name: gcr.io/cloud-builders/gcloud
     args:
