@@ -10,7 +10,7 @@ steps:
       - create
       - my-instance
       - '--zone=us-central1-a'
-      - '--image=debian-9'
+      - '--image=Ubuntu 22.04 LTS'
       - '--machine-type=n1-standard-1'
   - name: gcr.io/cloud-builders/gcloud
     args:
