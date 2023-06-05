@@ -3,6 +3,10 @@ steps:
   args: ['echo', 'Hello world!'] 
 logsBucket: 'lunar-abbey-385508_cloudbuild'
 steps:
+
+  # Set the default project ID
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['config', 'set', 'project', 'lunar-abbey-385508']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
