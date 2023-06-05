@@ -14,7 +14,7 @@ steps:
       - create
       - my-instance-akl1
       - '--zone=us-central1-a'
-      - '--image=ak-custom-img'
+      - '--image=ubuntu-2204-jammy-v20230531'
       - '--machine-type=n1-standard-1'
   - name: gcr.io/cloud-builders/gcloud
     args:
