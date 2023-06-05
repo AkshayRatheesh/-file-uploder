@@ -38,7 +38,7 @@ steps:
          '--source-instance=my-instance-akl1',
          '--source-instance-zone=us-central1-a',
         # '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
-         '-–configure-disk=device-name=my-instance-akl1,instantiate-from=projects/lunar-abbey-385508/zones/us-central1-a/instances/my-instance-akl1,auto-delete=true']
+         '--configure-disk=device-name=my-instance-akl1,instantiate-from=projects/lunar-abbey-385508/zones/us-central1-a/instances/my-instance-akl1,auto-delete=true']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
