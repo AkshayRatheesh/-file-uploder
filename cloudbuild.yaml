@@ -32,4 +32,4 @@ steps:
       - delete
       - my-instance
       - '--zone=us-central1-a'
-      - '--quiet'
+      - '--quiet' 
