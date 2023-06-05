@@ -1,4 +1,4 @@
-steps:
+steps: 
 - name: 'bash' 
   args: ['echo', 'Hello world!']
 logsBucket: 'lunar-abbey-385508_cloudbuild'
