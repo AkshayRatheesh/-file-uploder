@@ -10,7 +10,7 @@ steps:
       - create
       - my-instance-akl1
       - '--zone=us-central1-a'
-      - '--image=pythonserver-10'
+      - '--image=ak-custom-img'
       - '--machine-type=n1-standard-1'
   - name: gcr.io/cloud-builders/gcloud
     args:
