@@ -4,41 +4,52 @@ steps:
 logsBucket: 'lunar-abbey-385508_cloudbuild'
 steps:
 
-#   # Set the default project ID
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     args: ['config', 'set', 'project', 'lunar-abbey-385508']
-#   - name: gcr.io/cloud-builders/gcloud
-#     args:
-#       - compute
-#       - instances
-#       - create
-#       - my-instance-akl1
-#       - '--zone=us-central1-a'
-#       - '--image=projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230531'
-#       - '--machine-type=n1-standard-1'
-#   - name: gcr.io/cloud-builders/gcloud
-#     args:
-#       - compute
-#       - ssh
-#       - my-instance-akl1
-#       - '--zone=us-central1-a'
-#       - >-
-#         --command=sudo apt-get update && sudo apt-get install -y nginx && echo
-#         "Hello from Cloud Build" | sudo tee /var/www/html/index.html
+  # Set the default project ID
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['config', 'set', 'project', 'lunar-abbey-385508']
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - compute
+      - instances
+      - create
+      - my-instance-akl1
+      - '--zone=us-central1-a'
+      - '--image=projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230531'
+      - '--machine-type=n1-standard-1'
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - compute
+      - ssh
+      - my-instance-akl1
+      - '--zone=us-central1-a'
+      - >-
+        --command=sudo apt-get update && sudo apt-get install -y nginx && echo
+        "Hello from Cloud Build" | sudo tee /var/www/html/index.html
         
-# # steps:
-#   - name: 'gcr.io/cloud-builders/gcloud'
-#     args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
+# steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['compute', 'instances', 'stop', 'my-instance-akl1', '--zone=us-central1-a']
         
-
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - compute
+      - images
+      - create
+      - my-imagekkk
+      - '--source-disk=my-instance-akl1'
+      - '--source-disk-zone=us-central1-a'
       
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['compute', 'instance-templates', 'create', 'newinstanvetm1',
-         '--source-instance=image-creater',
-         '--source-instance-zone=us-central1-a',
-        # '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
-         '--configure-disk=device-name=persistent-disk-0,instantiate-from=source-image,auto-delete=true']
+    args: ['compute', 'instance-templates', 'create', 'instance-template-1', '--project=lunar-abbey-385508', '--machine-type=e2-medium', '--network-interface=network=default,network-tier=PREMIUM', '--maintenance-policy=MIGRATE', '--provisioning-model=STANDARD', '--service-account=401886769847-compute@developer.gserviceaccount.com', '--scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append', '--tags=http-server,https-server', '--create-disk=auto-delete=yes,boot=yes,device-name=instance-template-1,image=projects/lunar-abbey-385508/global/images/my-imagekkk,mode=rw,size=10,type=pd-balanced', '--no-shielded-secure-boot', '--shielded-vtpm', '--shielded-integrity-monitoring', '--reservation-affinity=any']
+
+
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: ['compute', 'instance-templates', 'create', 'newinstanvetm1',
+#          '--source-instance=image-creater',
+#          '--source-instance-zone=us-central1-a',
+#         # '--configure-disk=device-name=my-instance-akl1,instantiate-from=source-image,auto-delete=true']
+#          '--configure-disk=device-name=persistent-disk-0,instantiate-from=source-image,auto-delete=true']
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
