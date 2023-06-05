@@ -35,5 +35,5 @@ steps:
       - instances
       - delete
       - my-instance
-      - '--zone=us-central1-a' 
+      - '--zone=us-central1-a'  
       - '--quiet' 
