@@ -8,7 +8,7 @@ steps:
       - compute
       - instances
       - create
-      - my-instance-akl
+      - my-instance-akl1
       - '--zone=us-central1-a'
       - '--image=pythonserver-10'
       - '--machine-type=n1-standard-1'
@@ -16,29 +16,29 @@ steps:
     args:
       - compute
       - ssh
-      - my-instance-akl
+      - my-instance-akl1
       - '--zone=us-central1-a'
       - >-
         --command=sudo apt-get update && sudo apt-get install -y nginx && echo
         "Hello from Cloud Build" | sudo tee /var/www/html/index.html
         
-steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['compute', 'instances', 'stop', 'my-instance-akl', '--zone=us-central1-a']
+# steps:
+#   - name: 'gcr.io/cloud-builders/gcloud'
+#     args: ['compute', 'instances', 'stop', 'my-instance-akl', '--zone=us-central1-a']
         
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
       - images
       - create
-      - my-image-akl
-      - '--source-disk=my-instance-akl'
+      - my-image-akl1-new
+      - '--source-disk=my-instance-akl1'
       - '--source-disk-zone=us-central1-a'
   - name: gcr.io/cloud-builders/gcloud
     args:
       - compute
       - instances
       - delete
-      - my-instance-akl
+      - my-instance-akl1
       - '--zone=us-central1-a'  
       - '--quiet' 
